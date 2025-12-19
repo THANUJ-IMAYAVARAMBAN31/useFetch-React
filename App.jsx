@@ -1,4 +1,4 @@
-import FetchPosts from './components/FetchPosts'
+import FetchPosts from 'FetchPosts'
 
 function App() {
   return (
