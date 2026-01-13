@@ -4,11 +4,13 @@ function useFetch(url) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-const fetchData = useCallback(() => {
+
+  const fetchData = useCallback(() => {
     setLoading(true);
     setError(null);
 
-    fetch(url).then((response) => {
+    fetch(url)
+      .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
@@ -27,7 +29,8 @@ const fetchData = useCallback(() => {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
- return { data, loading, error };
+
+  return { data, loading, error };
 }
 
 export default useFetch;
