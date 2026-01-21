@@ -1,37 +1,42 @@
-import { useEffect, useState } from "react";
+// src/FetchPost.jsx
+import React from "react";
+import useFetch from "./useFetch";
 
-function FetchPost() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+const FetchPost = () => {
+  const url = "https://jsonplaceholder.typicode.com/posts";
+  const { data, loading, error } = useFetch(url);
 
-  useEffect(() => {
-    fetch("https://api.escuelajs.co/api/v1/products")
-      .then((response) => response.json())
-      .then((data) => {
-        setPosts(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setError("Something went wrong");
-        setLoading(false);
-      });
-  }, []);
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!data || data.length === 0) return <div>No data found</div>;
 
-  if (loading) return <h2>Loading...</h2>;
-  if (error) return <h2>{error}</h2>;
+  const items = data.slice(0, 10);
 
   return (
-    <div>
-      <h1>Posts</h1>
-      {posts.slice(0, 5).map((post) => (
-        <div key={post.id}>
-          <h3>{post.title}</h3>
-          <p>{post.body}</p>
+    <div style={styles.grid}>
+      {items.map((item) => (
+        <div key={item.id} style={styles.card}>
+          <h3>{item.title}</h3>
+          <p>{item.body}</p>
         </div>
       ))}
     </div>
   );
-}
+};
+
+const styles = {
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+    gap: "16px",
+    padding: "16px",
+  },
+  card: {
+    border: "1px solid #ccc",
+    borderRadius: "8px",
+    padding: "12px",
+    background: "#fff",
+  },
+};
 
 export default FetchPost;
