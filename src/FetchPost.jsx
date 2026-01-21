@@ -3,7 +3,7 @@ import React from "react";
 import useFetch from "./useFetch";
 
 const FetchPost = () => {
-  const url = "https://jsonplaceholder.typicode.com/posts";
+  const url = " https://api.escuelajs.co/api/v1/products";
   const { data, loading, error } = useFetch(url);
 
   if (loading) return <div>Loading...</div>;
