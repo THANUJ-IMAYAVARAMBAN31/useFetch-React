@@ -1,11 +1,7 @@
-import FetchPosts from './FetchPost'
+import FetchPost from "./FetchPost";
 
 function App() {
-  return (
-    <div>
-      <FetchPosts />
-    </div>
-  );
+  return <FetchPost />;
 }
 
 export default App;
