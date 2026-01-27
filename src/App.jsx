@@ -1,7 +1,7 @@
-import FetchPost from "./FetchPost";
+import UseFetch from "./useFetch";
 
-function App() {
-  return <FetchPost />;
+export default function App(){
+  return( 
+  <UseFetch />
+  )
 }
-
-export default App;

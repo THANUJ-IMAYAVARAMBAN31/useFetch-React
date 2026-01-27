@@ -1,9 +1,23 @@
-import useFetch from "./useFetch";
+import { useEffect, useState } from "react";
 
-export default function FetchPost() {
-  const { data, loading, error } = useFetch(
-    "https://api.escuelajs.co/api/v1/products"
-  );
+
+export default function UseFetch() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const url="https://api.escuelajs.co/api/v1/products"
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((result) => {
+        setData(result);
+        setLoading(false);
+      })
+      .catch(() => {
+        setError("Error fetching data");
+        setLoading(false);
+      });
+  }, [url]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
