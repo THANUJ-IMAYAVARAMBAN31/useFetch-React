@@ -1,7 +1,6 @@
-import UseFetch from "./useFetch";
-
+import FetchProducts from "./FetchProducts"
 export default function App(){
   return( 
-  <UseFetch />
+  <FetchProducts />
   )
 }
